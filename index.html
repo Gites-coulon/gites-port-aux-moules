@@ -232,7 +232,6 @@ section { padding:80px 40px; }
 }
 .formule-btn:hover { background: var(--eau-clair); }
 
-/* CALENDRIER RESPONSIVE - CORRIGÉ */
 .date-picker-wrapper {
   display: flex;
   gap: 30px;
@@ -363,7 +362,6 @@ footer {
   gap: 12px;
 }
 
-/* RESPONSIVE */
 @media (max-width: 1100px) {
   nav { padding: 16px 30px; }
   nav.scrolled { padding: 10px 30px; }
@@ -492,6 +490,7 @@ footer {
       <h2 class="section-title">Les hébergements<br><em>en images</em></h2>
     </div>
 
+    <!-- MAISON 10 - 16 PHOTOS -->
     <div class="carousel-section fade-up">
       <h3 class="carousel-title">🏠 MAISON 10 - 5 pièces, 3 chambres, jardin</h3>
       <div class="carousel-container" id="carousel-10">
@@ -602,7 +601,7 @@ footer {
           <h4 style="color:var(--eau); margin-bottom:14px;">Contact direct</h4>
           <div class="contact-line">📞 <a href="tel:+33668492533">06 68 49 25 33</a></div>
           <div class="contact-line">✉️ <a href="mailto:jacqueline.poulain.gif@gmail.com">jacqueline.poulain.gif@gmail.com</a></div>
-          <div class="contact-line">📍 10-12 Rue du Port aux Moules, 79510 Coulon</div>
+          <div class="contact-line">📍 10-12 Rue du Port aux Moules, 79510</div>
           <div class="contact-line">🕒 Heure d'arrivée et départ flexibles (à convenir ensemble)</div>
         </div>
         <div class="no-pets">🚫 Animaux non acceptés</div>
@@ -726,11 +725,51 @@ const faders = document.querySelectorAll('.fade-up');
 const observer = new IntersectionObserver(e => e.forEach(e => e.isIntersecting && e.target.classList.add('visible')), { threshold: .1 });
 faders.forEach(f => observer.observe(f));
 
+// ========== 16 PHOTOS POUR MAISON 10 AVEC NOMS DE FICHIERS SEO ==========
 const carouselImages = {
-  'carousel-10': ['🏠 Façade Maison 10', '🛋️ Salon spacieux', '🛏️ Chambre 1', '🛏️ Chambre 2', '🚿 Salle de bain', '🌿 Jardin Maison 10'],
-  'carousel-studio': ['🏢 Entrée Studio 12', '🛋️ Grand canapé 2 places', '🍳 Kitchenette', '🚿 Douche', '🚽 WC'],
-  'carousel-12complet': ['🏢 Entrée 12', '🛋️ Salon rez', '🍳 Cuisine', '🪜 Escalier vers étage', '🛏️ Chambre 1 étage', '🛏️ Chambre 2 étage', '🚿 Salle d\'eau'],
-  'carousel-complete': ['🏠+🏢 Vue ensemble 10+12', '🌿 Jardin', '🔥 Barbecue & Plancha', '🏡 Préau couvert', '🛋️ Salon Maison 10', '🛏️ Grande chambre', '🚪 Communication 1er étage']
+  'carousel-10': [
+    { url: "assets/maison10/maison-10-facade-exterieur-porte-entonr.jpg", alt: "Maison 10 - Façade extérieure avec porte d'entrée et jardin paysager" },
+    { url: "assets/maison10/maison-10-sejour-canape-vue-porte-exterieur.jpg", alt: "Séjour de la Maison 10 - Canapé confortable avec vue sur la porte extérieure et le jardin" },
+    { url: "assets/maison10/maison-10-sejour-escalier-premier-etage.jpg", alt: "Séjour de la Maison 10 - Vue intérieure vers l'escalier menant au premier étage" },
+    { url: "assets/maison10/maison-10-salle-de-bain-baignoire-toilette-lavabo.jpg", alt: "Salle de bain principale de la Maison 10 - Baignoire, toilette et lavabo" },
+    { url: "assets/maison10/maison-10-douche-toilette-lavabo.jpg", alt: "Salle d'eau de la Maison 10 - Douche, toilette et lavabo design" },
+    { url: "assets/maison10/maison-10-douche-lavabo.jpg", alt: "Seconde salle d'eau de la Maison 10 - Douche et lavabo modernes" },
+    { url: "assets/maison10/maison-10-table-jardin-vue-gite.jpg", alt: "Table de jardin dans l'espace extérieur avec vue sur le gîte depuis le jardin" },
+    { url: "assets/maison10/maison-10-chambre-deux-lits-bleus.jpg", alt: "Chambre de la Maison 10 - Deux lits jumeaux aux tons bleus apaisants" },
+    { url: "assets/maison10/maison-10-chambre-lit-double.jpg", alt: "Chambre spacieuse de la Maison 10 - Grand lit double pour deux personnes" },
+    { url: "assets/maison10/maison-10-cuisine-equipee.jpg", alt: "Cuisine entièrement équipée de la Maison 10 - Four, plaques, lave-vaisselle" },
+    { url: "assets/maison10/maison-10-vue-cuisine-jardin.jpg", alt: "Vue depuis la cuisine de la Maison 10 sur le jardin et la Venise Verte" },
+    { url: "assets/maison10/maison-10-jardin-transat-vue-large.jpg", alt: "Jardin paysager de la Maison 10 avec transats et vue panoramique sur le Marais Poitevin" },
+    { url: "assets/maison10/maison-10-barbecue-plancha-exterieur.jpg", alt: "Espace barbecue et plancha extérieurs pour les repas en plein air" },
+    { url: "assets/maison10/maison-10-banc-bois-jardin.jpg", alt: "Banc en bois dans le jardin de la Maison 10 - Détente au calme" },
+    { url: "assets/maison10/maison-10-jardin-canal-barques.jpg", alt: "Jardin avec vue sur le canal - Location de barques à moins de 100 mètres" },
+    { url: "assets/maison10/maison-10-velos-barques-proximite.jpg", alt: "À proximité immédiate - Location de vélos et barques pour explorer le Marais Poitevin" }
+  ],
+  'carousel-studio': [
+    { url: "assets/studio12/studio-12-entree.jpg", alt: "Entrée du Studio 12 au rez-de-chaussée" },
+    { url: "assets/studio12/studio-12-canape-convertible.jpg", alt: "Studio 12 - Grand canapé convertible 2 places" },
+    { url: "assets/studio12/studio-12-kitchenette.jpg", alt: "Kitchenette du Studio 12 équipée" },
+    { url: "assets/studio12/studio-12-douche.jpg", alt: "Douche moderne du Studio 12" },
+    { url: "assets/studio12/studio-12-wc.jpg", alt: "Toilettes séparées du Studio 12" }
+  ],
+  'carousel-12complet': [
+    { url: "assets/studio12/studio-12-entier-entree.jpg", alt: "Entrée du Studio 12 Entier" },
+    { url: "assets/studio12/studio-12-salon-rez.jpg", alt: "Salon au rez-de-chaussée du Studio 12" },
+    { url: "assets/studio12/studio-12-cuisine.jpg", alt: "Cuisine complète du Studio 12" },
+    { url: "assets/studio12/studio-12-escalier-etage.jpg", alt: "Escalier menant au premier étage" },
+    { url: "assets/studio12/studio-12-chambre-1-etage.jpg", alt: "Première chambre à l'étage" },
+    { url: "assets/studio12/studio-12-chambre-2-etage.jpg", alt: "Seconde chambre à l'étage" },
+    { url: "assets/studio12/studio-12-salle-eau.jpg", alt: "Salle d'eau à l'étage" }
+  ],
+  'carousel-complete': [
+    { url: "assets/propriete-complete/ensemble-10-12.jpg", alt: "Vue d'ensemble de la propriété complète - Maison 10 et Studio 12" },
+    { url: "assets/propriete-complete/jardin-ensemble.jpg", alt: "Grand jardin partagé de la propriété complète" },
+    { url: "assets/propriete-complete/barbecue-plancha.jpg", alt: "Espace barbecue et plancha pour les repas en groupe" },
+    { url: "assets/propriete-complete/preau-couvert.jpg", alt: "Préau couvert pour vos repas et loisirs en plein air" },
+    { url: "assets/propriete-complete/salon-maison-10.jpg", alt: "Salon spacieux de la Maison 10" },
+    { url: "assets/propriete-complete/grande-chambre.jpg", alt: "Grande chambre de la propriété complète" },
+    { url: "assets/propriete-complete/communication-1er-etage.jpg", alt: "Communication entre les deux logements par le 1er étage" }
+  ]
 };
 
 let carouselStates = {};
@@ -742,10 +781,21 @@ function initCarousel(carouselId) {
   if (!track) return;
   carouselStates[carouselId] = 0;
   track.innerHTML = '';
-  images.forEach((label, idx) => {
+  images.forEach((img, idx) => {
     const slide = document.createElement('div');
     slide.className = 'carousel-slide';
-    slide.innerHTML = `<div style="text-align:center;">${label.split(' ')[0]}<br><span>${label}</span></div>`;
+    // Si c'est un objet avec url, on utilise l'image réelle
+    if (typeof img === 'object' && img.url) {
+      slide.style.backgroundImage = `url('${img.url}')`;
+      slide.style.backgroundSize = 'cover';
+      slide.style.backgroundPosition = 'center';
+      const altSpan = document.createElement('span');
+      altSpan.textContent = img.alt;
+      slide.appendChild(altSpan);
+    } else {
+      // Fallback pour les anciens formats
+      slide.innerHTML = `<div style="text-align:center;">${typeof img === 'string' ? img.split(' ')[0] : '📷'}<br><span>${typeof img === 'string' ? img : img.alt}</span></div>`;
+    }
     track.appendChild(slide);
   });
   dotsContainer.innerHTML = '';
