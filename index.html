@@ -160,7 +160,7 @@ section { padding:80px 40px; }
   border-radius: 30px;
   font-size: 13px;
 }
-.carousel-btn {
+.-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -175,10 +175,10 @@ section { padding:80px 40px; }
   transition: all 0.3s;
   z-index: 10;
 }
-.carousel-btn:hover { background: var(--or); color: var(--nuit); }
-.carousel-btn.prev { left: 12px; }
-.carousel-btn.next { right: 12px; }
-.carousel-dots {
+.-btn:hover { background: var(--or); color: var(--nuit); }
+.-btn.prev { left: 12px; }
+.-btn.next { right: 12px; }
+.-dots {
   position: absolute;
   bottom: 12px;
   left: 0;
@@ -188,7 +188,7 @@ section { padding:80px 40px; }
   gap: 8px;
   z-index: 10;
 }
-.carousel-dot {
+.-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
@@ -196,7 +196,7 @@ section { padding:80px 40px; }
   cursor: pointer;
   transition: all 0.3s;
 }
-.carousel-dot.active { background: var(--or); width: 22px; border-radius: 4px; }
+.-dot.active { background: var(--or); width: 22px; border-radius: 4px; }
 
 .formules-grid {
   display: grid;
@@ -728,44 +728,28 @@ faders.forEach(f => observer.observe(f));
 // ========== 16 PHOTOS POUR MAISON 10 AVEC NOMS DE FICHIERS SEO ==========
 const carouselImages = {
   'carousel-10': [
-    { url: "https://raw.githubusercontent.com/gites-coulon/gites-port-aux-moules/main/asset/maison-10-facade-exterieur-porte-entree.webp", alt: "Maison 10 - Façade extérieure avec porte d'entrée et jardin paysager" },
-    { url: "https://raw.githubusercontent.com/gites-coulon/gites-port-aux-moules/main/asset/maison-10-sejour-canape-vue-porte-exterieur.webp", alt: "Séjour de la Maison 10 - Canapé confortable avec vue sur la porte extérieure et le jardin" },
-    { url: "https://raw.githubusercontent.com/gites-coulon/gites-port-aux-moules/main/asset/maison-10-sejour-escalier-premier-etage.webp", alt: "Séjour de la Maison 10 - Vue intérieure vers l'escalier menant au premier étage" },
-    { url: "https://raw.githubusercontent.com/gites-coulon/gites-port-aux-moules/main/asset/maison-10-salle-de-bain-baignoire-toilette-lavabo.webp", alt: "Salle de bain principale de la Maison 10 - Baignoire, toilette et lavabo" },
-    { url: "https://raw.githubusercontent.com/gites-coulon/gites-port-aux-moules/main/asset/maison-10-douche-toilette-lavabo.webp", alt: "Salle d'eau de la Maison 10 - Douche, toilette et lavabo design" },
-    { url: "https://raw.githubusercontent.com/gites-coulon/gites-port-aux-moules/main/asset/maison-10-douche-lavabo.webp", alt: "Seconde salle d'eau de la Maison 10 - Douche et lavabo modernes" },
-    { url: "https://raw.githubusercontent.com/gites-coulon/gites-port-aux-moules/main/asset/maison-10-table-jardin-vue-gite.webp", alt: "Table de jardin dans l'espace extérieur avec vue sur le gîte depuis le jardin" },
-    { url: "https://raw.githubusercontent.com/gites-coulon/gites-port-aux-moules/main/asset/maison-10-chambre-deux-lits-bleus.webp", alt: "Chambre de la Maison 10 - Deux lits jumeaux aux tons bleus apaisants" },
-    { url: "https://raw.githubusercontent.com/gites-coulon/gites-port-aux-moules/main/asset/maison-10-chambre-lit-double.webp", alt: "Chambre spacieuse de la Maison 10 - Grand lit double pour deux personnes" },
-    { url: "https://raw.githubusercontent.com/gites-coulon/gites-port-aux-moules/main/asset/maison-10-cuisine-equipee.webp", alt: "Cuisine entièrement équipée de la Maison 10 - Four, plaques, lave-vaisselle" },
-    { url: "https://raw.githubusercontent.com/gites-coulon/gites-port-aux-moules/main/asset/maison-10-vue-cuisine-jardin.webp", alt: "Vue depuis la cuisine de la Maison 10 sur le jardin et la Venise Verte" },
-    { url: "https://raw.githubusercontent.com/gites-coulon/gites-port-aux-moules/main/asset/maison-10-jardin-transat-vue-large.webp", alt: "Jardin paysager de la Maison 10 avec transats et vue panoramique sur le Marais Poitevin" },
-    { url: "https://raw.githubusercontent.com/gites-coulon/gites-port-aux-moules/main/asset/maison-10-banc-bois-jardin.webp", alt: "Banc en bois dans le jardin de la Maison 10 - Détente au calme" }
-],
+    { url: "https://raw.githubusercontent.com/gites-coulon/gites-port-aux-moules/main/asset/maison-10-facade-exterieur-porte-entree.webp", alt: "Maison 10 - Façade extérieure" },
+    { url: "https://raw.githubusercontent.com/gites-coulon/gites-port-aux-moules/main/asset/maison-10-sejour-canape-vue-porte-exterieur.webp", alt: "Séjour - Canapé vue sur jardin" },
+    { url: "https://raw.githubusercontent.com/gites-coulon/gites-port-aux-moules/main/asset/maison-10-sejour-escalier-premier-etage.webp", alt: "Séjour - Escalier 1er étage" },
+    { url: "https://raw.githubusercontent.com/gites-coulon/gites-port-aux-moules/main/asset/maison-10-salle-de-bain-baignoire-toilette-lavabo.webp", alt: "Salle de bain - Baignoire" },
+    { url: "https://raw.githubusercontent.com/gites-coulon/gites-port-aux-moules/main/asset/maison-10-douche-toilette-lavabo.webp", alt: "Salle d'eau - Douche" },
+    { url: "https://raw.githubusercontent.com/gites-coulon/gites-port-aux-moules/main/asset/maison-10-douche-lavabo.webp", alt: "Seconde salle d'eau" },
+    { url: "https://raw.githubusercontent.com/gites-coulon/gites-port-aux-moules/main/asset/maison-10-table-jardin-vue-gite.webp", alt: "Table de jardin" },
+    { url: "https://raw.githubusercontent.com/gites-coulon/gites-port-aux-moules/main/asset/maison-10-chambre-deux-lits-bleus.webp", alt: "Chambre - Lits bleus" },
+    { url: "https://raw.githubusercontent.com/gites-coulon/gites-port-aux-moules/main/asset/maison-10-chambre-lit-double.webp", alt: "Chambre - Lit double" },
+    { url: "https://raw.githubusercontent.com/gites-coulon/gites-port-aux-moules/main/asset/maison-10-cuisine-equipee.webp", alt: "Cuisine équipée" },
+    { url: "https://raw.githubusercontent.com/gites-coulon/gites-port-aux-moules/main/asset/maison-10-vue-cuisine-jardin.webp", alt: "Vue cuisine sur jardin" },
+    { url: "https://raw.githubusercontent.com/gites-coulon/gites-port-aux-moules/main/asset/maison-10-jardin-transat-vue-large.webp", alt: "Jardin avec transats" },
+    { url: "https://raw.githubusercontent.com/gites-coulon/gites-port-aux-moules/main/asset/maison-10-banc-bois-jardin.webp", alt: "Banc en bois au jardin" }
+  ],
   'carousel-studio': [
-    { url: "assets/studio12/studio-12-entree.jpg", alt: "Entrée du Studio 12 au rez-de-chaussée" },
-    { url: "assets/studio12/studio-12-canape-convertible.jpg", alt: "Studio 12 - Grand canapé convertible 2 places" },
-    { url: "assets/studio12/studio-12-kitchenette.jpg", alt: "Kitchenette du Studio 12 équipée" },
-    { url: "assets/studio12/studio-12-douche.jpg", alt: "Douche moderne du Studio 12" },
-    { url: "assets/studio12/studio-12-wc.jpg", alt: "Toilettes séparées du Studio 12" }
+    { url: null, label: "📷 Studio 12 - Photos à venir" }
   ],
   'carousel-12complet': [
-    { url: "assets/studio12/studio-12-entier-entree.jpg", alt: "Entrée du Studio 12 Entier" },
-    { url: "assets/studio12/studio-12-salon-rez.jpg", alt: "Salon au rez-de-chaussée du Studio 12" },
-    { url: "assets/studio12/studio-12-cuisine.jpg", alt: "Cuisine complète du Studio 12" },
-    { url: "assets/studio12/studio-12-escalier-etage.jpg", alt: "Escalier menant au premier étage" },
-    { url: "assets/studio12/studio-12-chambre-1-etage.jpg", alt: "Première chambre à l'étage" },
-    { url: "assets/studio12/studio-12-chambre-2-etage.jpg", alt: "Seconde chambre à l'étage" },
-    { url: "assets/studio12/studio-12-salle-eau.jpg", alt: "Salle d'eau à l'étage" }
+    { url: null, label: "📷 Duplex 12 - Photos à venir" }
   ],
   'carousel-complete': [
-    { url: "assets/propriete-complete/ensemble-10-12.jpg", alt: "Vue d'ensemble de la propriété complète - Maison 10 et Duplex 12" },
-    { url: "assets/propriete-complete/jardin-ensemble.jpg", alt: "Grand jardin partagé de la propriété complète" },
-    { url: "assets/propriete-complete/barbecue-plancha.jpg", alt: "Espace barbecue et plancha pour les repas en groupe" },
-    { url: "assets/propriete-complete/preau-couvert.jpg", alt: "Préau couvert pour vos repas et loisirs en plein air" },
-    { url: "assets/propriete-complete/salon-maison-10.jpg", alt: "Salon spacieux de la Maison 10" },
-    { url: "assets/propriete-complete/grande-chambre.jpg", alt: "Grande chambre de la propriété complète" },
-    { url: "assets/propriete-complete/communication-1er-etage.jpg", alt: "Communication entre les deux logements par le 1er étage" }
+    { url: null, label: "📷 Propriété complète - Photos à venir" }
   ]
 };
 
