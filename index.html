@@ -82,14 +82,21 @@ nav.scrolled { background:rgba(26,46,46,.96); backdrop-filter:blur(12px); paddin
 .nav-links a:hover { color:var(--or); }
 .nav-cta { background:var(--or) !important; color:var(--nuit) !important; padding:8px 18px !important; border-radius:2px; }
 
-.hero { min-height:100vh; position:relative; display:flex; align-items:center; justify-content:center; background: linear-gradient(160deg, #1a3a3a, #2d6a6a, #1a2e2e).hero { background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.3)), url('asset/banniere-coulon-marais-poitevin-bateaux-coucher-soleil.webp') center/cover no-repeat; }
--content { text-align:center; z-index:10; padding:0 24px; position:relative; }
--eyebrow { font-size:10px; letter-spacing:.45em; text-transform:uppercase; color:var(--or); margin-bottom:15px; }
--title { font-size:clamp(36px,7vw,80px); color:var(--blanc); line-height:1.1; }
--title em { font-style:italic; color:#a8d8d8; display:block; }
--subtitle { font-size:14px; color:rgba(255,255,255,.8); max-width:560px; margin:15px auto; line-height:1.6; }
--ctas { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:25px; }
--badges { 
+.hero { 
+  min-height:100vh; 
+  position:relative; 
+  display:flex; 
+  align-items:center; 
+  justify-content:center; 
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.3)), url('https://gites-coulon.github.io/gites-port-aux-moules/asset/banniere-coulon-marais-poitevin-bateaux-coucher-soleil.webp') center/cover no-repeat;
+}
+.hero-content { text-align:center; z-index:10; padding:0 24px; position:relative; }
+.hero-eyebrow { font-size:10px; letter-spacing:.45em; text-transform:uppercase; color: #e8d48b; margin-bottom:15px; font-weight:500; }
+.hero-title { font-size:clamp(36px,7vw,80px); color:var(--blanc); line-height:1.1; }
+.hero-title em { font-style:italic; color:#a8d8d8; display:block; }
+.hero-subtitle { font-size:14px; color:rgba(255,255,255,.9); max-width:560px; margin:15px auto; line-height:1.6; }
+.hero-ctas { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:25px; }
+.hero-badges { 
   position: relative; 
   margin-top: 40px;
   display: flex; 
@@ -98,7 +105,7 @@ nav.scrolled { background:rgba(26,46,46,.96); backdrop-filter:blur(12px); paddin
   flex-wrap: wrap; 
   z-index: 10;
 }
--badge { background:rgba(255,255,255,.1); backdrop-filter:blur(8px); padding:8px 16px; color:var(--blanc); font-size:11px; letter-spacing:.1em; border-radius:30px; }
+.hero-badge { background:rgba(255,255,255,.15); backdrop-filter:blur(8px); padding:8px 16px; color:var(--blanc); font-size:11px; letter-spacing:.1em; border-radius:30px; }
 
 section { padding:80px 40px; }
 .section-inner { max-width:1200px; margin:0 auto; }
@@ -225,7 +232,7 @@ section { padding:80px 40px; }
 }
 .formule-btn:hover { background: var(--eau-clair); }
 
-/* CALENDRIER RESPONSIVE */
+/* CALENDRIER RESPONSIVE - CORRIGÉ */
 .date-picker-wrapper {
   display: flex;
   gap: 30px;
@@ -235,8 +242,7 @@ section { padding:80px 40px; }
 }
 .calendar-box {
   flex: 1;
-  min-width: 260px;
-  max-width: 100%;
+  min-width: 280px;
   background: var(--blanc);
   border-radius: 16px;
   padding: 18px;
@@ -388,7 +394,7 @@ footer {
     padding: 15px;
   }
   .map-activities { grid-template-columns: 1fr; gap: 25px; }
-   { min-height: auto; padding: 100px 0 50px; }
+  .hero { min-height: auto; padding: 100px 0 50px; }
   .hero-badges { margin-top: 25px; }
   .hero-ctas { margin-bottom: 15px; }
   .section-title { font-size: 28px; }
@@ -572,7 +578,7 @@ footer {
           <div class="formule-address" style="font-size:11px; color:var(--gris);">📍 10-12 Rue du Port aux Moules</div>
           <div class="formule-price">400€ <span style="font-size:14px;">/ nuit</span></div>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; text-align: left; margin-top: 15px;">
-            <ul style="list-style:none; color:#000000; font-size:12px;"><li>🏠 Maison 10 : 5 pièces · 3 chambres</li><li>🏢 Maison 12 : 3 pièces · 2 chambres</li><li>🛏️ Total : 8 pièces · 6 chambres</li></ul>
+            <ul style="list-style:none; color:#000000; font-size:12px;"><li>🏠 Maison 10 : 5 pièces · 3 chambres</li><li>🏢 Maison 12 : 3 pièces · 2 chambres</li><li>🛏️ Total : 8 pièces · 5 chambres</li></ul>
             <ul style="list-style:none; color:#000000; font-size:12px;"><li>👥 Jusqu'à 15 personnes</li><li>🚿 4 WC · 2 douches + 1 bain</li><li>🌿 Jardin · Transat · Barbecue · Plancha</li><li>🚪 Communication par le 1er étage</li></ul>
           </div>
           <button class="formule-btn" onclick="preselectConfig('complete')" style="background: var(--or); color: var(--nuit); margin-top: 15px;">Réserver la propriété complète →</button>
@@ -634,7 +640,7 @@ footer {
                 <div><strong>🏢 Studio 12 (rez)</strong> — 12 Rue du Port aux Moules, 1 pièce, 1-2 pers.</div>
                 <div style="color:var(--eau); font-weight:700;">100€/nuit</div>
               </div>
-              <div class="config-option" data-val="complet12" data-label="Gîte 3 pièces avec 2 chambres à l'étage (studio+étage) - 3 pièces, 2 chambres" data-price="150" style="padding:14px; border:2px solid var(--rule); border-radius:12px; cursor:pointer;">
+              <div class="config-option" data-val="complet12" data-label="Studio 12 Entier - 3 pièces, 2 chambres à l'étage" data-price="150" style="padding:14px; border:2px solid var(--rule); border-radius:12px; cursor:pointer;">
                 <div><strong>🏢 Studio 12 Entier</strong> — 12 Rue du Port aux Moules, 3 pièces, 2 chambres à l'étage, 3-4 pers.</div>
                 <div style="color:var(--eau); font-weight:700;">150€/nuit</div>
               </div>
@@ -642,7 +648,7 @@ footer {
                 <div><strong>🏠 Maison 10</strong> — 10 Rue du Port aux Moules, 5 pièces, 3 chambres, 6-8 pers.</div>
                 <div style="color:var(--eau); font-weight:700;">250€/nuit</div>
               </div>
-              <div class="config-option" data-val="complete" data-label="Propriété complète 10+12" data-price="400" style="padding:14px; border:2px solid var(--or); background:var(--or-pale); border-radius:12px; cursor:pointer;">
+              <div class="config-option" data-val="complete" data-label="Propriété entière 10+12" data-price="400" style="padding:14px; border:2px solid var(--or); background:var(--or-pale); border-radius:12px; cursor:pointer;">
                 <div><strong>PROPRIÉTÉ Entière — 10 + 12</strong><br>Les deux maisons, jusqu'à 15 personnes</div>
                 <div style="color:var(--eau); font-size:18px; font-weight:700;">400€/nuit</div>
               </div>
