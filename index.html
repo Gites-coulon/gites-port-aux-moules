@@ -731,7 +731,8 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.1 });
 faders.forEach(f => observer.observe(f));
 
- '10': [
+const carouselImages = {
+    '10': [
         "https://raw.githubusercontent.com/gites-coulon/gites-port-aux-moules/main/asset/maison-10-facade-exterieur-porte-entree.webp",
         "https://raw.githubusercontent.com/gites-coulon/gites-port-aux-moules/main/asset/maison-10-sejour-canape-vue-porte-exterieur.webp",
         "https://raw.githubusercontent.com/gites-coulon/gites-port-aux-moules/main/asset/maison-10-sejour-escalier-premier-etage.webp",
@@ -745,7 +746,7 @@ faders.forEach(f => observer.observe(f));
         "https://raw.githubusercontent.com/gites-coulon/gites-port-aux-moules/main/asset/maison-10-vue-cuisine-jardin.webp",
         "https://raw.githubusercontent.com/gites-coulon/gites-port-aux-moules/main/asset/maison-10-jardin-transat-vue-large.webp",
         "https://raw.githubusercontent.com/gites-coulon/gites-port-aux-moules/main/asset/maison-10-banc-bois-jardin.webp"
-],
+    ],
     'studio': [],
     '12complet': [],
     'complete': []
