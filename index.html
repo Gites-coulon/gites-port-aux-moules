@@ -127,7 +127,7 @@ section { padding:80px 40px; }
 .carousel-container {
   position: relative;
   width: 100%;
-  height: 320px;
+  height: 400px;
   overflow: hidden;
   border-radius: 16px;
   margin-bottom: 15px;
@@ -141,26 +141,26 @@ section { padding:80px 40px; }
 .carousel-slide {
   min-width: 100%;
   height: 100%;
-  background-size: cover;
-  background-position: center;
   position: relative;
-  background: linear-gradient(135deg, #c4d8d8, #8ab8b8);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 56px;
-  color: white;
+  flex-shrink: 0;
+}
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .carousel-slide span {
   position: absolute;
   bottom: 20px;
   left: 20px;
   background: rgba(0,0,0,0.6);
+  color: white;
   padding: 6px 14px;
   border-radius: 30px;
   font-size: 13px;
+  z-index: 2;
 }
-.-btn {
+.carousel-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -171,14 +171,14 @@ section { padding:80px 40px; }
   height: 40px;
   border-radius: 50%;
   cursor: pointer;
-  font-size: 22px;
+  font-size: 24px;
   transition: all 0.3s;
   z-index: 10;
 }
-.-btn:hover { background: var(--or); color: var(--nuit); }
-.-btn.prev { left: 12px; }
-.-btn.next { right: 12px; }
-.-dots {
+.carousel-btn:hover { background: var(--or); color: var(--nuit); }
+.carousel-btn.prev { left: 12px; }
+.carousel-btn.next { right: 12px; }
+.carousel-dots {
   position: absolute;
   bottom: 12px;
   left: 0;
@@ -188,7 +188,7 @@ section { padding:80px 40px; }
   gap: 8px;
   z-index: 10;
 }
-.-dot {
+.carousel-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
@@ -196,7 +196,7 @@ section { padding:80px 40px; }
   cursor: pointer;
   transition: all 0.3s;
 }
-.-dot.active { background: var(--or); width: 22px; border-radius: 4px; }
+.carousel-dot.active { background: var(--or); width: 22px; border-radius: 4px; }
 
 .formules-grid {
   display: grid;
@@ -490,13 +490,13 @@ footer {
       <h2 class="section-title">Les hébergements<br><em>en images</em></h2>
     </div>
 
-    <!-- MAISON 10 - 16 PHOTOS -->
+    <!-- MAISON 10 -->
     <div class="carousel-section fade-up">
       <h3 class="carousel-title">🏠 MAISON 10 - 5 pièces, 3 chambres, jardin</h3>
       <div class="carousel-container" id="carousel-10">
-        <button class="carousel-btn prev" onclick="changeSlide('carousel-10', -1)">‹</button>
+        <button class="carousel-btn prev" onclick="changeSlide('10', -1)">‹</button>
         <div class="carousel-track" id="track-10"></div>
-        <button class="carousel-btn next" onclick="changeSlide('carousel-10', 1)">›</button>
+        <button class="carousel-btn next" onclick="changeSlide('10', 1)">›</button>
         <div class="carousel-dots" id="dots-10"></div>
       </div>
     </div>
@@ -504,19 +504,19 @@ footer {
     <div class="carousel-section fade-up">
       <h3 class="carousel-title">🏢 Studio 12 - Rez-de-chaussée (1 pièce, cuisine, douche, WC)</h3>
       <div class="carousel-container" id="carousel-studio">
-        <button class="carousel-btn prev" onclick="changeSlide('carousel-studio', -1)">‹</button>
+        <button class="carousel-btn prev" onclick="changeSlide('studio', -1)">‹</button>
         <div class="carousel-track" id="track-studio"></div>
-        <button class="carousel-btn next" onclick="changeSlide('carousel-studio', 1)">›</button>
+        <button class="carousel-btn next" onclick="changeSlide('studio', 1)">›</button>
         <div class="carousel-dots" id="dots-studio"></div>
       </div>
     </div>
 
     <div class="carousel-section fade-up">
-      <h3 class="carousel-title">🏢 Duplex 12 - Rez-de-chaussée + 1er étage (3 pièces, 2 chambres à l'étage)</h3>
+      <h3 class="carousel-title">🏢 Duplex 12 - Rez-de-chaussée + 1er étage (3 pièces, 2 chambres)</h3>
       <div class="carousel-container" id="carousel-12complet">
-        <button class="carousel-btn prev" onclick="changeSlide('carousel-12complet', -1)">‹</button>
+        <button class="carousel-btn prev" onclick="changeSlide('12complet', -1)">‹</button>
         <div class="carousel-track" id="track-12complet"></div>
-        <button class="carousel-btn next" onclick="changeSlide('carousel-12complet', 1)">›</button>
+        <button class="carousel-btn next" onclick="changeSlide('12complet', 1)">›</button>
         <div class="carousel-dots" id="dots-12complet"></div>
       </div>
     </div>
@@ -524,9 +524,9 @@ footer {
     <div class="carousel-section fade-up">
       <h3 class="carousel-title">🏠+🏢 PROPRIÉTÉ Entière - Maison 10 + Duplex 12 (jusqu'à 15 pers.)</h3>
       <div class="carousel-container" id="carousel-complete">
-        <button class="carousel-btn prev" onclick="changeSlide('carousel-complete', -1)">‹</button>
+        <button class="carousel-btn prev" onclick="changeSlide('complete', -1)">‹</button>
         <div class="carousel-track" id="track-complete"></div>
-        <button class="carousel-btn next" onclick="changeSlide('carousel-complete', 1)">›</button>
+        <button class="carousel-btn next" onclick="changeSlide('complete', 1)">›</button>
         <div class="carousel-dots" id="dots-complete"></div>
       </div>
     </div>
@@ -718,10 +718,6 @@ footer {
 </footer>
 
 <script>
-// ==================================================
-// SCRIPT SIMPLIFIÉ POUR LES CARROUSELS
-// ==================================================
-
 const nav = document.getElementById('mainNav');
 window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
 
@@ -735,9 +731,8 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.1 });
 faders.forEach(f => observer.observe(f));
 
-// --- 1. DÉFINITION DES IMAGES (TESTÉ ET FONCTIONNEL) ---
 const carouselImages = {
-    'carousel-10': [
+    '10': [
         "https://raw.githubusercontent.com/gites-coulon/gites-port-aux-moules/main/asset/maison-10-facade-exterieur-porte-entree.webp",
         "https://raw.githubusercontent.com/gites-coulon/gites-port-aux-moules/main/asset/maison-10-sejour-canape-vue-porte-exterieur.webp",
         "https://raw.githubusercontent.com/gites-coulon/gites-port-aux-moules/main/asset/maison-10-sejour-escalier-premier-etage.webp",
@@ -752,12 +747,11 @@ const carouselImages = {
         "https://raw.githubusercontent.com/gites-coulon/gites-port-aux-moules/main/asset/maison-10-jardin-transat-vue-large.webp",
         "https://raw.githubusercontent.com/gites-coulon/gites-port-aux-moules/main/asset/maison-10-banc-bois-jardin.webp"
     ],
-    'carousel-studio': [], // Tableau vide pour l'instant
-    'carousel-12complet': [],
-    'carousel-complete': []
+    'studio': [],
+    '12complet': [],
+    'complete': []
 };
 
-// --- 2. FONCTIONS DU CARROUSEL ---
 let carouselStates = {};
 
 function initCarousel(carouselId) {
@@ -765,27 +759,20 @@ function initCarousel(carouselId) {
     const dotsContainer = document.getElementById(`dots-${carouselId}`);
     const imageUrls = carouselImages[carouselId] || [];
     
-    // Si le conteneur n'existe pas ou qu'il n'y a pas d'images, on arrête.
     if (!track || imageUrls.length === 0) return;
 
-    // Initialise l'état du carrousel
     carouselStates[carouselId] = 0;
-    track.innerHTML = ''; // Vide le track
+    track.innerHTML = '';
 
-    // Crée chaque slide
     imageUrls.forEach((url, index) => {
         const slide = document.createElement('div');
         slide.className = 'carousel-slide';
         
-        // Crée l'image
         const img = document.createElement('img');
         img.src = url;
-        img.alt = `Photo ${index + 1} du gîte`;
-        img.style.width = '100%';
-        img.style.height = '100%';
-        img.style.objectFit = 'cover';
+        img.alt = `Photo ${index + 1} du gîte - Location vacances Marais Poitevin Coulon`;
+        img.loading = "lazy";
         
-        // Ajoute la légende (optionnel)
         const caption = document.createElement('span');
         caption.textContent = `Photo ${index + 1}`;
         
@@ -794,7 +781,6 @@ function initCarousel(carouselId) {
         track.appendChild(slide);
     });
 
-    // Crée les points (dots) de navigation
     dotsContainer.innerHTML = '';
     imageUrls.forEach((_, index) => {
         const dot = document.createElement('div');
@@ -811,7 +797,6 @@ function updateCarousel(carouselId) {
     if (track) {
         track.style.transform = `translateX(-${currentIndex * 100}%)`;
     }
-    // Met à jour l'aspect visuel des dots
     const dots = document.querySelectorAll(`#dots-${carouselId} .carousel-dot`);
     dots.forEach((dot, idx) => {
         if (idx === currentIndex) {
@@ -841,21 +826,10 @@ function goToSlide(carouselId, index) {
     }
 }
 
-// --- 3. INITIALISATION DE TOUS LES CARROUSELS ---
-initCarousel('carousel-10');
-initCarousel('carousel-studio');
-initCarousel('carousel-12complet');
-initCarousel('carousel-complete');
-
-// --- GARDER LE RESTE DE VOTRE SCRIPT (CALENDRIER, RÉSERVATION, ETC.) ---
-// ... TOUT LE CODE POUR LE CALENDRIER, LA RESERVATION, ETC. ...
-// Assurez-vous que le code pour le calendrier et la réservation est EN DESSOUS de ceci.
-
-// (Recopiez ici tout le code que vous aviez pour le calendrier, 
-//  les fonctions goToStep, selectDate, submitResa, etc.)
-// ... 
-// ...
-
+initCarousel('10');
+initCarousel('studio');
+initCarousel('12complet');
+initCarousel('complete');
 
 let state = { arrDate: null, depDate: null, config: null, configLabel: null, configPrice: 0, nights: 0, adults: 2, children: 0 };
 const MOIS = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
