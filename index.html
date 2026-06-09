@@ -615,6 +615,24 @@ footer {
       </div>
 
       <div class="resa-form-wrap fade-up">
+        <!-- Formulaire Formspree caché pour l'envoi -->
+        <form id="formspreeForm" action="https://formspree.io/f/xrevkkpa" method="POST" style="display:none;">
+          <input type="hidden" name="_subject" value="Nouvelle demande de réservation - Gîtes Port aux Moules">
+          <input type="hidden" name="_replyto" id="formspree_email">
+          <input type="hidden" name="prenom" id="formspree_prenom">
+          <input type="hidden" name="nom" id="formspree_nom">
+          <input type="hidden" name="telephone" id="formspree_tel">
+          <input type="hidden" name="date_arrivee" id="formspree_arrivee">
+          <input type="hidden" name="date_depart" id="formspree_depart">
+          <input type="hidden" name="nuits" id="formspree_nuits">
+          <input type="hidden" name="configuration" id="formspree_config">
+          <input type="hidden" name="adultes" id="formspree_adultes">
+          <input type="hidden" name="enfants" id="formspree_enfants">
+          <input type="hidden" name="prix_total_estime" id="formspree_prix">
+          <input type="hidden" name="message" id="formspree_message">
+          <input type="hidden" name="_gotcha" style="display:none !important">
+        </form>
+
         <div id="resaApp">
           <div class="progress">
             <div class="p-step"><div class="p-dot active" id="dot1">1</div><div class="p-label active" id="lbl1">Dates</div></div>
@@ -864,6 +882,7 @@ let currentMonthArr = new Date().getMonth(), currentYearArr = new Date().getFull
 let currentMonthDep = new Date().getMonth(), currentYearDep = new Date().getFullYear();
 
 function formatDate(d) { if (!d) return ''; return `${d.getDate()} ${MOIS[d.getMonth()]} ${d.getFullYear()}`; }
+function formatDateForInput(d) { if (!d) return ''; return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
 
 function buildCalendar(type, year, month) {
   const today = new Date(); today.setHours(0,0,0,0);
@@ -982,6 +1001,13 @@ function getDiscount() {
   return 0; 
 }
 
+function getFinalTotal() {
+  const discount = getDiscount(); 
+  let total = state.nights * state.configPrice; 
+  let discountAmount = total * discount; 
+  return Math.round(total - discountAmount);
+}
+
 function buildRecap3() {
   const discount = getDiscount(); 
   let total = state.nights * state.configPrice; 
@@ -1002,11 +1028,55 @@ function submitResa() {
         nom = document.getElementById('fNom').value.trim(), 
         email = document.getElementById('fEmail').value.trim(), 
         tel = document.getElementById('fTel').value.trim(), 
+        message = document.getElementById('fMessage').value,
         consent = document.getElementById('fConsent').checked;
-  if (!prenom || !nom || !email || !tel || !consent) { document.getElementById('err3').style.display = 'block'; return; }
+        
+  if (!prenom || !nom || !email || !tel || !consent) { 
+    document.getElementById('err3').style.display = 'block'; 
+    return; 
+  }
   document.getElementById('err3').style.display = 'none';
+  
+  // Remplir le formulaire Formspree
+  document.getElementById('formspree_email').value = email;
+  document.getElementById('formspree_prenom').value = prenom;
+  document.getElementById('formspree_nom').value = nom;
+  document.getElementById('formspree_tel').value = tel;
+  document.getElementById('formspree_arrivee').value = formatDate(state.arrDate);
+  document.getElementById('formspree_depart').value = formatDate(state.depDate);
+  document.getElementById('formspree_nuits').value = state.nights;
+  document.getElementById('formspree_config').value = state.configLabel;
+  document.getElementById('formspree_adultes').value = state.adults;
+  document.getElementById('formspree_enfants').value = state.children;
+  document.getElementById('formspree_prix').value = getFinalTotal() + " €";
+  
+  let fullMessage = `Message du client :\n${message}\n\n--- Détails réservation ---\nDates: du ${formatDate(state.arrDate)} au ${formatDate(state.depDate)} (${state.nights} nuits)\nConfiguration: ${state.configLabel}\nPersonnes: ${state.adults} adultes + ${state.children} enfants\nTotal estimé: ${getFinalTotal()} €\nTéléphone: ${tel}`;
+  document.getElementById('formspree_message').value = fullMessage;
+  
+  // Afficher le récap dans l'étape 4
   document.getElementById('recap4').innerHTML = document.getElementById('recap3').innerHTML;
-  goToStep(4);
+  
+  // Soumettre le formulaire Formspree
+  const form = document.getElementById('formspreeForm');
+  
+  fetch(form.action, {
+    method: 'POST',
+    body: new FormData(form),
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(response => {
+    if (response.ok) {
+      goToStep(4);
+    } else {
+      alert("Une erreur s'est produite. Veuillez nous contacter directement par téléphone ou email.");
+      goToStep(4); // Quand même afficher la confirmation
+    }
+  })
+  .catch(error => {
+    console.error('Erreur:', error);
+    alert("Une erreur s'est produite. Veuillez nous contacter directement par téléphone ou email.");
+    goToStep(4);
+  });
 }
 
 document.getElementById('calendar-arr').innerHTML = buildCalendar('arr', currentYearArr, currentMonthArr);
